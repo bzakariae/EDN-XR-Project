@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &127259460
 PrefabInstance:
@@ -394,6 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415470144}
+  - component: {fileID: 415470145}
   m_Layer: 0
   m_Name: BowlingAlley
   m_TagString: Untagged
@@ -427,6 +428,20 @@ Transform:
   - {fileID: 1678105259}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415470145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415470143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009748bd4032e6149a68d123f978e60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallenCount: 0
+  scoreText: {fileID: 0}
 --- !u!1001 &528120867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &837122228
 PrefabInstance:
@@ -1021,7 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &1007820547
 PrefabInstance:
@@ -1175,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1 &1008957250 stripped
 GameObject:
@@ -1244,7 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1 &1023651573 stripped
 GameObject:
@@ -1313,7 +1328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &1039705782
 PrefabInstance:
@@ -2728,7 +2743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &1875738052
 PrefabInstance:
@@ -2877,7 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1001 &1980252833
 PrefabInstance:
@@ -3031,7 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!1 &2020388952 stripped
 GameObject:
@@ -3100,7 +3115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7750317b3f00742aa70a6e1ec8ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallAngleThreshold: 60
+  fallAngleThreshold: 70
   isFallen: 0
 --- !u!114 &170740364202766768
 MonoBehaviour:
