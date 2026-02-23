@@ -1,38 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // [cite: 58] Obligatoire pour utiliser TextMeshProUGUI
+using TMPro;
 
+/// <summary>
+/// Compte le nombre de quilles tombées et met à jour l'affichage du score.
+/// À attacher sur l'objet BowlingAlley (parent des quilles).
+/// </summary>
 public class PinCounter : MonoBehaviour
 {
-     private FallingPin[] pins; 
-     public int fallenCount = 0; 
+    [Tooltip("Tableau des quilles (rempli automatiquement au Start)")]
+    private FallingPin[] pins;
 
+    [Tooltip("Nombre de quilles tombées")]
+    private int fallenCount;
+
+    [Tooltip("Référence vers le texte UI du score")]
     public TextMeshProUGUI scoreText;
 
     void Start()
     {
-        
+        // Récupérer toutes les quilles enfants de cet objet
         pins = GetComponentsInChildren<FallingPin>();
     }
 
     void Update()
     {
-        int currentCount = 0; 
-
-        foreach (FallingPin pin in pins) 
+        // Compter les quilles tombées
+        fallenCount = 0;
+        foreach (var pin in pins)
         {
-             if (pin.isFallen) 
-            {
-                 currentCount++; 
-            }
+            if (pin.isFallen)
+                fallenCount++;
         }
 
-        fallenCount = currentCount; 
-
+        // Mettre à jour l'affichage du score
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + fallenCount.ToString();
+            scoreText.text = "Score : " + fallenCount + " / " + pins.Length;
         }
     }
 }
