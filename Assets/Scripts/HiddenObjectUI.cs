@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class HiddenObjectUI : MonoBehaviour
 {
+    [Header("Placement")]
+    public Transform menuAnchor;
+
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject gameHudPanel;
@@ -28,7 +31,17 @@ public class HiddenObjectUI : MonoBehaviour
         btnFind10.onClick.AddListener(() => StartGame(10));
         btnRestart.onClick.AddListener(ReturnToMenu);
 
-        // Au demarrage, on deplace le menu pile devant les yeux du joueur (Camera)
+        PlaceCanvas();
+    }
+
+    void PlaceCanvas()
+    {
+        if (menuAnchor != null)
+        {
+            transform.SetPositionAndRotation(menuAnchor.position, menuAnchor.rotation);
+            return;
+        }
+
         PlaceCanvasInFrontOfPlayer();
     }
 

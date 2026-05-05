@@ -4,11 +4,13 @@ using System.Collections.Generic;
 public class HiddenObjectManager : MonoBehaviour
 {
     public static HiddenObjectManager Instance;
+    const string HiddenSpawnsRootName = "[HiddenSpawns]";
 
     [Header("UI")]
     public HiddenObjectUI uiManager;
 
     [Header("Spawns & Items")]
+    public GameObject[] spawnPointObjects;
     public Transform[] spawnPoints;
     
     [System.Serializable]
@@ -26,6 +28,7 @@ public class HiddenObjectManager : MonoBehaviour
     private int objectsFound = 0;
     private HiddenItemDef currentTarget;
     private GameObject currentSpawnedObject;
+    private List<HiddenItemDef> availableItems;
     private List<Transform> availableSpawns;
 
     void Awake()
@@ -42,16 +45,18 @@ public class HiddenObjectManager : MonoBehaviour
 
     public void StartGame(int objectCount)
     {
-        // Calcule le nombre max d'objets possibles
-        totalObjectsToFind = Mathf.Min(objectCount, possibleItems.Count);
+        availableItems = new List<HiddenItemDef>(possibleItems);
+        availableSpawns = BuildSpawnList();
+
+        // Calcule le nombre max d'objets possibles selon les objets et les cachettes
+        totalObjectsToFind = Mathf.Min(objectCount, availableItems.Count, availableSpawns.Count);
         if (totalObjectsToFind <= 0)
         {
-            Debug.LogError("[HiddenObjectManager] Aucun objet a trouver. Avez-vous genere les objets ?");
+            Debug.LogError("[HiddenObjectManager] Aucun objet/cachette a utiliser. Avez-vous configure les objets et les positions ?");
             return;
         }
 
         objectsFound = 0;
-        availableSpawns = new List<Transform>(spawnPoints);
 
         uiManager.ShowGameHUD();
         uiManager.UpdateScore(objectsFound, totalObjectsToFind);
@@ -68,9 +73,9 @@ public class HiddenObjectManager : MonoBehaviour
         }
 
         // Selectionner un objet aleatoirement et le retirer de la liste
-        int itemIndex = Random.Range(0, possibleItems.Count);
-        currentTarget = possibleItems[itemIndex];
-        possibleItems.RemoveAt(itemIndex);
+        int itemIndex = Random.Range(0, availableItems.Count);
+        currentTarget = availableItems[itemIndex];
+        availableItems.RemoveAt(itemIndex);
 
         // Selectionner un point de cachette et le retirer
         int spawnIndex = Random.Range(0, availableSpawns.Count);
@@ -123,6 +128,41 @@ public class HiddenObjectManager : MonoBehaviour
             else
                 SpawnNextObject();
         }
+    }
+
+    List<Transform> BuildSpawnList()
+    {
+        List<Transform> result = new List<Transform>();
+
+        GameObject hiddenSpawnsRoot = GameObject.Find(HiddenSpawnsRootName);
+        if (hiddenSpawnsRoot != null)
+        {
+            foreach (Transform child in hiddenSpawnsRoot.transform)
+            {
+                if (child.name.StartsWith("Spawn_"))
+                    result.Add(child);
+            }
+        }
+
+        if (spawnPointObjects != null)
+        {
+            foreach (GameObject spawnObject in spawnPointObjects)
+            {
+                if (spawnObject != null && !result.Contains(spawnObject.transform))
+                    result.Add(spawnObject.transform);
+            }
+        }
+
+        if (result.Count == 0 && spawnPoints != null)
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                if (spawnPoint != null)
+                    result.Add(spawnPoint);
+            }
+        }
+
+        return result;
     }
 
     public void ResetToMenu()
